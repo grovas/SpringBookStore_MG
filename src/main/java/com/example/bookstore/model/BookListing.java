@@ -1,5 +1,6 @@
 package com.example.bookstore.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class BookListing {
     private int count;
 
     public BookListing(List<Book> books, int count) {
-        this.books = books;
+        this.books = Collections.unmodifiableList(books);
         this.count = count;
     }
 
