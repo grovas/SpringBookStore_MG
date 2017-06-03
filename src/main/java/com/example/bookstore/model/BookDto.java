@@ -1,10 +1,18 @@
 package com.example.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class BookDto {
     private String name;
     private String author;
 
     public BookDto() {
+    }
+
+    public BookDto(String name, String author) {
+        this.name = name;
+        this.author = author;
     }
 
     public String getName() {

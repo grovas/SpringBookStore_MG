@@ -27,6 +27,7 @@ public class BookRepositoryImplTest {
 //        assertEquals(2, books.size());
 //
 //        books.add(new Book("Title3", "Author3"));
+//        System.out.println(books);
 //
 //        assertEquals(2, bookRepository.findAll().size());
 //    }
