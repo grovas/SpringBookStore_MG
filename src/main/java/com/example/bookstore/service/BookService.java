@@ -1,6 +1,7 @@
 package com.example.bookstore.service;
 
 import com.example.bookstore.model.Book;
+import com.example.bookstore.model.BookDetails;
 import com.example.bookstore.model.BookListing;
 import com.example.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class BookService {
     public void deleteBookById(String id) {
         Optional<Book> book = bookRepository.findById(id);
         book.ifPresent(bookRepository::delete);
+    }
+
+    public BookDetails getBookDetailsById(String id) {
+        //return new BookDetails(title, author, description);
+        return null;
     }
 }
