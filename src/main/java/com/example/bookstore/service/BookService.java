@@ -29,8 +29,8 @@ public class BookService {
         );
     }
 
-    public void addBook(Book book) {
-        bookRepository.save(book);
+    public Book addBook(Book book) {
+        return bookRepository.save(book);
     }
 
     public void deleteBookById(String id) {

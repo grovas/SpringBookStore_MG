@@ -36,8 +36,15 @@ public class BookStoreEndpoint {
         return BookListingDto.toDto(bookService.getListingData());
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addBooks(@RequestBody BookDto bookDto) {
-        bookService.addBook(bookDto.fromDto());
+    public BookDto addBooks(@RequestBody BookDto bookDto) {
+        return BookDto.toDto(bookService.addBook(bookDto.fromDto()));
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteBookById(@PathVariable String id) {
+        bookService.deleteBookById(id);
     }
 }

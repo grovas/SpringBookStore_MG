@@ -31,12 +31,13 @@ public class BookRepositoryImpl implements BookRepository {
         books.remove(book);
     }
 
-    public void save(Book book) {
-        books.add(
-                new Book(
-                        Long.toString(lastIndex.getAndIncrement()),
-                        book.getTitle(),
-                        book.getAuthor())
-        );
+    public Book save(Book book) {
+        Book newBook = new Book(
+                Long.toString(lastIndex.getAndIncrement()),
+                book.getTitle(),
+                book.getAuthor());
+
+        books.add(newBook);
+        return newBook;
     }
 }

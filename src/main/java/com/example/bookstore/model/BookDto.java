@@ -1,16 +1,17 @@
 package com.example.bookstore.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class BookDto {
-    private String name;
+    @JsonProperty("title") private String name;
     private String author;
 
     public BookDto() {
     }
 
-    public BookDto(String name, String author) {
+    public BookDto(
+            String name,
+            String author) {
         this.name = name;
         this.author = author;
     }
@@ -33,5 +34,9 @@ public class BookDto {
 
     public Book fromDto() {
         return new Book(name, author);
+    }
+
+    public static BookDto toDto(Book book) {
+        return new BookDto(book.getTitle(), book.getAuthor());
     }
 }
