@@ -31,4 +31,12 @@ public class BookDetailsDto {
                 ", description='" + description + '\'' +
                 '}';
     }
+
+    public static BookDetailsDto toDto(BookDetails bookDetails) {
+        return new BookDetailsDto(
+                bookDetails.getTitle(),
+                bookDetails.getAuthor(),
+                bookDetails.getDescription()
+        );
+    }
 }

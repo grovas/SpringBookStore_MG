@@ -1,5 +1,6 @@
 package com.example.bookstore.endpoint;
 
+import com.example.bookstore.model.BookDetailsDto;
 import com.example.bookstore.model.BookDto;
 import com.example.bookstore.model.BookListing;
 import com.example.bookstore.model.BookListingDto;
@@ -43,8 +44,16 @@ public class BookStoreEndpoint {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/{id}")
     public void deleteBookById(@PathVariable String id) {
         bookService.deleteBookById(id);
+    }
+
+    // np. "/api/books/12"
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public BookDetailsDto getBookDetails(@PathVariable String id) {
+        // TODO bookService.getBookDetailsById...
+        return BookDetailsDto.toDto(bookService.getBookDetailsById(id));
     }
 }

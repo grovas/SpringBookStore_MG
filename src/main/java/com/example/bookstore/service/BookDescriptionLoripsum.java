@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("bookDescriptionDummy")
-public class BookDescriptionDummy implements BookDescriptionClient {
+@Qualifier("bookDescriptionLoripsum")
+public class BookDescriptionLoripsum implements BookDescriptionClient {
     @Override
     public String getDescription(String bookId) {
-        return "book description";
+        return "loripsum";
     }
 }
