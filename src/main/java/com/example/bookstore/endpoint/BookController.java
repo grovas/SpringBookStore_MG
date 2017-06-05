@@ -36,6 +36,11 @@ public class BookController {
         return "book-listing";
     }
 
+    @GetMapping("/ajax")
+    public String ajaxListing() {
+        return "ajax-listing";
+    }
+
     @PostMapping()
     public String addBook(@ModelAttribute BookDto bookDto,
                           RedirectAttributes redirectAttributes) {
