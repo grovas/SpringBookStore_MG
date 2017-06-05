@@ -17,11 +17,13 @@ public class BookServiceTest {
 
     BookRepository bookRepository;
     BookService bookService;
+    BookDescriptionClient descriptionClient;
 
     @Before
     public void setUp() {
         bookRepository = mock(BookRepositoryImpl.class);
-        bookService = new BookService(bookRepository);
+        descriptionClient = mock(BookDescriptionClient.class);
+        bookService = new BookService(bookRepository, descriptionClient);
         when(bookRepository.findAll()).thenReturn(
                 Lists.newArrayList(
                         new Book("1","title1", "autor1"),

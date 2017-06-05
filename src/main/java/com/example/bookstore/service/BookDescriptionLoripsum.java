@@ -2,6 +2,7 @@ package com.example.bookstore.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 
@@ -10,16 +11,19 @@ import org.springframework.web.client.RestOperations;
 public class BookDescriptionLoripsum implements BookDescriptionClient {
 
     private final RestOperations restOperations;
+    private final String loripsumUrl;
 
     @Autowired
-    public BookDescriptionLoripsum(RestOperations restOperations) {
+    public BookDescriptionLoripsum(RestOperations restOperations,
+                                   @Value("${loripsum.url}") String loripsumUrl) {
         this.restOperations = restOperations;
+        this.loripsumUrl = loripsumUrl;
     }
 
     @Override
     public String getDescription(String bookId) {
         return restOperations.getForEntity(
-                "http://loripsum.net/api/plaintext", String.class
+                loripsumUrl + "/api/plaintext", String.class
         ).getBody();
     }
 }
