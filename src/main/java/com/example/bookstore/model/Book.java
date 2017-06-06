@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Book {
     @Id
     private String id;
-    @Indexed(name = "title_idx", unique = true)
+    @Indexed(name = "title_idx", unique = false)
     private String title;
     private String author;
 
