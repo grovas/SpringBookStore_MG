@@ -1,43 +1,23 @@
 package com.example.bookstore.repository;
 
 import com.example.bookstore.model.Book;
-import com.google.common.collect.Lists;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
-public class BookRepositoryImpl implements BookRepository {
-    private List<Book> books = Lists.newArrayList();
-    private AtomicLong lastIndex = new AtomicLong(1);
+import org.springframework.data.mongodb.core.query.*;
 
-    public List<Book> findAll() {
-//        return books; // TODO uncomment BookRepositoryImplTest to check out why it's bad
-        return Collections.unmodifiableList(books);
-    }
+public class BookRepositoryImpl implements BookRepositoryCustom {
+
+    @Autowired
+    private MongoOperations mongoOperations;
 
     @Override
-    public Optional<Book> findById(String id) {
-        return books.stream()
-                .filter(book -> id.equals(book.getId()))
-                .findFirst();
-    }
-
-    @Override
-    public void delete(Book book) {
-        books.remove(book);
-    }
-
-    public Book save(Book book) {
-        Book newBook = new Book(
-                Long.toString(lastIndex.getAndIncrement()),
-                book.getTitle(),
-                book.getAuthor());
-
-        books.add(newBook);
-        return newBook;
+    public List<Book> searchSpringBooks(int limit) {
+        Query query = new Query();
+        query.limit(limit);
+        query.addCriteria(Criteria.where("title").regex("/Spring/"));
+        return mongoOperations.find(query, Book.class);
     }
 }
