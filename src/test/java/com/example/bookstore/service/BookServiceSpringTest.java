@@ -24,14 +24,14 @@ public class BookServiceSpringTest {
 
     @Before
     public void setUp() {
-        // bookRepository.deleteAll();
-        bookRepository.save(new Book("ksiazka 1", "autor 1"));
-        bookRepository.save(new Book("ksiazka 2", "autor 2"));
+        bookRepository.deleteAll();
     }
 
     @Test
-    public void getListingData() throws Exception {
+    public void getListingData() {
         // given
+        Book book1 = bookRepository.save(new Book("ksiazka 1", "autor 1"));
+        Book book2 = bookRepository.save(new Book("ksiazka 2", "autor 2"));
 
         // when
         BookListing bookListing = bookService.getListingData();
@@ -40,8 +40,8 @@ public class BookServiceSpringTest {
         assertEquals(
                 new BookListing(
                         Lists.newArrayList(
-                                new Book("1", "ksiazka 1", "autor 1"),
-                                new Book("2", "ksiazka 2", "autor 2")
+                                new Book(book1.getId(), "ksiazka 1", "autor 1"),
+                                new Book(book2.getId(), "ksiazka 2", "autor 2")
                         ), 2),
                 bookListing
         );
