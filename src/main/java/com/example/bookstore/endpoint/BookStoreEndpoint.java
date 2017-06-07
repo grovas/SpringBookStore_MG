@@ -53,7 +53,6 @@ public class BookStoreEndpoint {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BookDetailsDto getBookDetails(@PathVariable String id) {
-        // TODO bookService.getBookDetailsById...
         return BookDetailsDto.toDto(bookService.getBookDetailsById(id));
     }
 }

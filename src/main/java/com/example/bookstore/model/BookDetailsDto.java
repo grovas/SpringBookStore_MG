@@ -1,5 +1,7 @@
 package com.example.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Objects;
 
 public class BookDetailsDto {
@@ -7,7 +9,10 @@ public class BookDetailsDto {
     private final String author;
     private final String description;
 
-    public BookDetailsDto(String title, String author, String description) {
+    public BookDetailsDto(
+            @JsonProperty("title") String title,
+            @JsonProperty("author") String author,
+            @JsonProperty("description") String description) {
         this.title = title;
         this.author = author;
         this.description = description;
